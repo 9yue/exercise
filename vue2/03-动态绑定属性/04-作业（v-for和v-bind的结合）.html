@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    .active {
+      color: #46aaec;
+    }
+  </style>
+</head>
+<body>
+<div id="app">
+  <h2>{{message}}</h2>
+  <p>作业需求：点击列表中的哪一项，该项的文字变成蓝色</p>
+  <ul>
+    <!--    第一个写法-->
+    <!--    <li v-for="(item,index) in story" v-on:click="i=index" :class="{active:index==i?isActive=true:isActive=false}">-->
+    <!--      {{item}}-->
+    <!--    </li>-->
+    <!--    简写1-->
+    <!--    <li v-for="(item,index) in story" v-on:click="listClick(index)" :class="{active:index==i?true:false}">-->
+    <!--      {{item}}-->
+    <!--    </li>-->
+    <!--    简写2-->
+    <li v-for="(item,index) in story" v-on:click="listClick(index)" :class="{active:index==i}">
+      {{item}}
+    </li>
+  </ul>
+</div>
+<script src="../js/vue2.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: '作业',
+      story: ['小红帽', '白雪公主', '睡美人', '灰姑娘', '美人鱼'],
+      i: 0,
+      isActive: false
+    },
+    methods: {
+      listClick(index) {
+        this.i = index;
+      }
+    }
+  })
+</script>
+</body>
+</html>

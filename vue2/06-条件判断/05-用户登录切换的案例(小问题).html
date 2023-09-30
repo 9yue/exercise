@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    .red{
+      color: red;
+    }
+  </style>
+</head>
+<body>
+<div id="app">
+  <h2>{{message}}</h2>
+  <h4>点击切换按钮时候，清空input里面的内容：使用key</h4>
+  <p>
+    vue再把dom显示浏览器的时候，中间会经过有一层<span class="red">虚拟dom</span>，把要渲染的数据放在内存中，再映射到浏览器。
+  </p>
+  <p>
+    vue为了考虑性能，虚拟dom会复用一些数据，例如：一开始显示账号登录的label和input元素已存在，切换邮箱登录时就会复用之前的label和iput，
+    渲染的时候会对比，会改掉不一样的东西（如id等）再渲染，但是不会修改value，所以一开始再账号登录输入的值会被带到邮箱登录的input。
+  </p>
+  <p class="red">不想复用之前的dom，通过key来标识。一样的key可以复用，不一样的key就不可以复用。</p>
+  <span v-if="isUser">
+    <label for="username">账号登录</label>
+    <input type="text" id="username" placeholder="账号登录" key="username">
+  </span>
+  <span v-else>
+    <label for="email"> 邮箱登录</label>
+     <input type="text" id="email" placeholder="邮箱登录" key="email">
+  </span>
+  <button @click="isUser=!isUser">切换</button>
+</div>
+<script src="../js/vue2.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: '用户登录切换的案例(小问题)',
+      isUser: true,
+    }
+  })
+</script>
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>04-Promise的链式调用(一)</title>
+</head>
+<body>
+<script>
+  // new Promise((resolve,reject)=>{
+  //   setTimeout(()=>{
+  //     resolve()
+  //   },1000)
+  // }).then(()=>{
+  //   console.log('1秒后显示')
+  //   console.log('1秒后显示')
+  //   console.log('1秒后显示')
+  //   console.log('1秒后显示')
+  //
+  //   //注意：这里必须加return
+  //   return new Promise((resolve,reject) => {
+  //     setTimeout(() => {
+  //       resolve()
+  //     },2000)
+  //   })
+  // }).then(()=>{
+  //       console.log('2秒后显示')
+  //       console.log('2秒后显示')
+  //       console.log('2秒后显示')
+  //       console.log('2秒后显示')
+  //
+  //     return new Promise((resolve,reject)=>{
+  //     setTimeout(()=>{
+  //       resolve()
+  //     },3000)
+  //   })
+  // }).then(()=>{
+  //   console.log('3秒后显示')
+  //   console.log('3秒后显示')
+  //   console.log('3秒后显示')
+  //   console.log('3秒后显示')
+  // })
+
+
+
+  //Promise return补充和理解
+
+  //1.不使用async/await，获取是一个Promise对象
+  // new Promise((resolve,reject)=>{
+  //   setTimeout(()=>{
+  //     resolve([1,2,3])
+  //   },1000)
+  // }).then((res)=>{
+  //   for(i of res)
+  //   {
+  //     var str = aa(i);//调用新的Promise
+  //     console.log('第'+i+'项'+str)
+  //   }
+  // })
+
+  // 2.使用async/await，await可以获取Promise.then()里面的值，使用await必须配合async
+  new Promise((resolve,reject)=>{
+    setTimeout(()=>{
+      resolve([1,2,3])
+    },1000)
+  }).then(async (res)=>{
+    for(i of res)
+    {
+      var str = await aa(i);//调用新的Promise
+      console.log('第'+i+'项'+str)
+    }
+  })
+
+
+  function aa(num){
+    //在then（）函数里拿到传过来的num拼接直接返回,调用aa()的Promise接收的结果是undefined
+    // new Promise((resolve,reject)=>{
+    //   setTimeout(()=>{
+    //     resolve(num)
+    //   },1000)
+    // }).then((res)=>{
+    //   console.log( '拿到'+res);
+    //   return '拿到'+res;
+    // })
+
+
+// then方法返回的是一个新的Promise实例（注意，不是原来那个Promise实例）。
+// 因此可以采用链式写法，即then方法后面再调用另一个then方法。
+//     new Promise((resolve,reject)=>{
+//       setTimeout(()=>{
+//         resolve(num)
+//       },1000)
+//     }).then((res)=>{
+//       console.log(res);
+//       return '拿到'+res;
+//     }).then((res)=>{
+//       //这里结果是上一个then的结果（拿到1，拿到2，拿到3）
+//       console.log(res)
+//     })
+
+
+
+    //这里返回的是一个Promise对象
+    return new Promise((resolve,reject)=>{
+      setTimeout(()=>{
+        resolve(num)
+      },1000)
+    }).then((res)=>{
+      console.log(res);
+      return '拿到'+res;
+    })
+  }
+
+
+
+</script>
+</body>
+</html>

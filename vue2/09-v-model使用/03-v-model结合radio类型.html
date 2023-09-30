@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <h2>{{message}}</h2>
+  <p>使用model,name可以省略:</p>
+  <h2>您选的性别是:{{sex}}</h2>
+  <label for="male">
+    <input type="radio" value="男" id="male" v-model="sex">男
+  </label>
+  <label for="female">
+  <input type="radio" value="女" id="female" v-model="sex">女
+  </label>
+</div>
+<script src="../js/vue2.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: 'v-model结合radio类型',
+      sex:'男',
+      agree:false
+    }
+  })
+</script>
+</body>
+</html>

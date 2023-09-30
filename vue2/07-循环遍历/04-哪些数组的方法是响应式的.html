@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <h2>{{message}}</h2>
+  <ul>
+    <li v-for="item in arrs">{{item}}</li>
+  </ul>
+  <button @click="btnClick">操作</button>
+</div>
+<script src="../js/vue2.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: '哪些数组的方法是响应式的',
+      arrs:['a','b','c','d','e','f']
+    },
+    methods:{
+      btnClick()
+      {
+      //  1.push：数组最后插入(可以插入多个值)
+      //   this.arrs.push('11')
+      //   this.arrs.push('11','22')
+
+      //  2.pop:删除数组中最后一个元素
+      //   this.arrs.pop();
+
+      //  3.shift:删除数组中第一个元素
+      // this.arrs.shift();
+
+      // 4.unshift：在数组最前面插入（可以插入多个值）
+      //   this.arrs.unshift('22')
+      //   this.arrs.unshift('11','22')
+      // 5.splice的三种用法（删除、插入、替换）
+      //  第一种:第一个元素代表位置，第二个元素代表删除几个，不写代表删除开始位置后的所有
+      //   splice(start)
+      //   this.arrs.splice(1)
+      //  第二种：插入，插入时，第二个元素为0，后面时插入的内容
+      //   this.arrs.splice(1,0,'2222','3333')
+      //  第三种：替换，第二个元素代表替换几个，后面是替换的元素(也可以理解，从开始位置删除两个，然后插入替换的元素)
+      //   this.arrs.splice(1,2,'111','222','3333')
+
+        // 6.sort:排序
+        // this.arrs.sort();
+
+      //  7.reverse：反向
+      //   this.arrs.reverse();
+
+
+
+      // 注意: 通过索引值修改数组中的元素，界面不能实时相应
+      //   this.arrs[0]='1111'
+      //   console.log(this.arrs)
+
+      // 第一种：splice修改办法(推荐)：
+      //   this.arrs.splice(0,1,'111')
+      //  第二种：vue的set修改办法
+        Vue.set(this.arrs,0,'111')
+      }
+    }
+  })
+</script>
+</body>
+</html>

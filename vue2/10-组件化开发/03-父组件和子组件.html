@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <h2>{{message}}</h2>
+  <cpn2></cpn2>
+</div>
+<script src="../js/vue2.js"></script>
+<script>
+<!--  创建子组件构建器对象-->
+const cpnC=Vue.extend({
+  template:`
+    <div>
+       <h2>子组件标题</h2>
+       <p>子组件的标题,呵呵呵呵呵呵呵</p>
+   </div>
+  `,
+})
+<!--  创建父组件构建器对象-->
+const cpnF=Vue.extend({
+  components:{
+    cpn:cpnC
+  },
+  template:`
+    <div>
+       <h2>父组件标题</h2>
+       <p>父组件的标题,hahhahaha</p>
+       <cpn></cpn>
+   </div>
+  `
+})
+
+
+  const app = new Vue({
+    el: '#app',
+    components:{
+      cpn2:cpnF
+    },
+    data: {
+      message: '父组件和子组件'
+    }
+  })
+</script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <h2>{{message}}</h2>
+  <my-cpn></my-cpn>
+  <cp2></cp2>
+</div>
+<script src="../js/vue2.js"></script>
+<script>
+  <!--  注册全局组件语法糖-->
+  Vue.component('my-cpn',{
+      template:`
+      <div>
+         <h2>标题</h2>
+         <p>段落,呵呵呵呵呵呵呵</p>
+     </div>
+    `,
+    })
+
+  //注册局部组件语法糖
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: '组件的语法糖注册方式',
+    },
+    components:{
+      'cpn2':{
+        template:`
+          <div>
+             <h2>标题2</h2>
+             <p>段落2,呵呵呵呵呵呵呵</p>
+         </div>
+        `,
+      }
+    }
+  })
+</script>
+</body>
+</html>

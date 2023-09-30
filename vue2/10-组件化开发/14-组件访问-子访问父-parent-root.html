@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <h2>{{message}}</h2>
+  <p>1.$parent(调用父组件):获取自己父组件所有数据。不建议使用，用的很少，会使组件不够独立，复用性降低，耦合度过高。
+    如组件调用父组件里title属性，又因为组件复用，不能保证每次复用的组件的父组件都有title属性</p>
+  <p>2.$root(调用根组件):不常用，无论在哪里调用,都会调用根组件(vue实例)数据</p>
+  <cpn></cpn>
+  <cpn2></cpn2>
+</div>
+
+<!--第一个子组件-->
+<template id="cpn">
+  <div>
+    <h2>第一个子组件</h2>
+    <button @click="getParent">点击获取父组件</button>
+    <ccpn></ccpn>
+  </div>
+</template>
+
+<!--第二个子组件-->
+<template id="cpn2">
+  <div>
+    <h2>第二个子组件</h2>
+  </div>
+</template>
+
+<!--子组件的子组件-->
+<template id="ccpn">
+  <div>
+    <h2>子组件的子组件的标题</h2>
+    <button @click="getParent2">获取父组件</button>
+    <button @click="getRoot">获取根组件</button>
+  </div>
+</template>
+
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: '组件访问-子访问父-parent-root'
+    },
+    components:{
+      cpn:{
+        template:'#cpn',
+        data(){
+          return {
+            message:'第一个子组件的标题'
+          }
+        },
+        methods:{
+          getParent()
+          {
+            //获取子组件
+            console.log(this.$parent);
+            console.log(this.$parent.message);
+            // console.log(this.$root);
+            // console.log(this.$root.message);
+          }
+        },
+        components:{
+          ccpn:{
+            template:'#ccpn',
+            methods: {
+              //调用父组件
+              getParent2()
+              {
+                console.log(this.$parent);
+                console.log(this.$parent.message);
+              },
+              //调用根组件
+              getRoot()
+              {
+                console.log(this.$root);
+                console.log(this.$root.message);
+              }
+            }
+          }
+        }
+      },
+      cpn2:{
+        template:'#cpn2'
+      }
+    }
+  })
+</script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <h2>{{message}}</h2>
+  <p>作用域插槽:父组件替换插槽标签,但是内容子组件提供</p>
+  <ul>
+    <li>作用域插槽使用:</li>
+    <li>1.在子组件slot插槽标签自定义一个属性(如:data,:arr),把数据赋值到这个变量(:data="names")</li>
+    <li>2.父组件通过 template slot-scope="自定义名字(allname)"标签接收到子组件传过来的姓名数据 </li>
+    <li>3.父组件内使用allname.data(名字数据),可以重新对数据进行标签、样式替换</li>
+  </ul>
+
+
+  <cpn></cpn>
+  <cpn>
+    <template slot-scope="allname">
+     <span v-for="item in allname.data">{{item}}-</span>
+<!--   join:数组转成字符串,并且可以自定义以什么符号连接-->
+      <span>{{allname.data.join('-')}}</span>
+    </template>
+  </cpn>
+
+  <cpn>
+    <template slot-scope="allname">
+      <!--   join:数组转成字符串,并且可以自定义以什么符号连接-->
+      <span>{{allname.data.join('*')}}</span>
+    </template>
+  </cpn>
+</div>
+
+<template id="cpn">
+  <div>
+    <slot :data="names">
+      <ul>
+        <li v-for="item in names">{{item}}</li>
+      </ul>
+    </slot>
+  </div>
+</template>
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: '04-作用于插槽的案例'
+    },
+    components:{
+      cpn:{
+        template:'#7-[';cpn',
+        data(){
+          return{
+            names:['小鱼','小福','小影','鹏鹏']
+            // names:'333'
+          }
+        }
+      }
+    }
+  })
+</script>
+</body>
+</html>

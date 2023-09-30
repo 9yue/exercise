@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>05-Promise的all方法使用</title>
+</head>
+<body>
+<script>
+
+   Promise.all([
+    new Promise((resolve, reject) => {
+      setTimeout(()=>{
+        resolve('第一个Promise')
+      },1000)
+
+    }),
+    new Promise((resolve, reject) => {
+      setTimeout(()=>{
+        resolve('第二个Promise')
+      },2000)
+    })
+  ]).then(res =>
+  {
+    console.log(res)
+  })
+</script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <!--  methods方法-->
+<!--  <h2>{{getfullName()}}</h2>-->
+<!--  <h2>{{getfullName()}}</h2>-->
+<!--  <h2>{{getfullName()}}</h2>-->
+<!--  <h2>{{getfullName()}}</h2>-->
+<!--  <h2>{{getfullName()}}</h2>-->
+  <!-- 计算属性-->
+  <h2>{{fullName}}</h2>
+  <h2>{{fullName}}</h2>
+  <h2>{{fullName}}</h2>
+  <h2>{{fullName}}</h2>
+  <h2>{{fullName}}</h2>
+  <h2>总结：</h2>
+  <p>一、计算属性比methods使用更简洁</p>
+  <p>二、在DOM里使用methods方法，使用几次就调用几次，但计算属性只调用一次，除非计算属性数据改变后，会再调用一次。</p>
+</div>
+<script src="../js/vue2.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: 'v-bind动态绑定class（对象语法）',
+      firstName: '小福',
+      lastName:'乱拉屎'
+    },
+    computed:{
+      //简写的计算属性
+      fullName()
+      {
+        console.log('bbb')
+        return this.firstName+this.lastName;
+      }
+    },
+    methods:{
+      getfullName(){
+        console.log('aaa')
+        return this.firstName+this.lastName;
+      }
+    }
+  })
+</script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <h2>{{message}}</h2>
+  <p>具名插槽:插槽添加name属性,name='left',使用时在标签写slot="left"就可以替换</p>
+  <p>什么使用具名插槽:组件里多个地方修改,有多个插槽,想改某一个插槽的时候</p>
+
+  <cpn></cpn>
+  <cpn>
+    <span slot="left">左边</span>
+    <span slot="middle">
+      <input type="text" placeholder="请输入要搜索的内容">
+      <span>搜索</span>
+    </span>
+    <span slot="right">返回</span>
+  </cpn>
+</div>
+
+<template id="cpn">
+  <div>
+   <slot name="left"><span>左箭头</span></slot>
+   <slot name="middle"><span>标题</span></slot>
+   <slot name="right"><span>菜单</span></slot>
+  </div>
+</template>
+
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: 'slot-具名插槽的使用',
+    },
+    components:{
+      cpn:{
+        template:'#cpn'
+      }
+    }
+  })
+</script>
+</body>
+</html>

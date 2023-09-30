@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    .active
+    {
+      color: #46aaec;
+    }
+    .line
+    {
+      border: 1px solid #d8a6f5;
+    }
+    .bgcolor
+    {
+      background-color: antiquewhite;
+    }
+  </style>
+</head>
+<body>
+<div id="app">
+  <h2>{{message}}</h2>
+  <p>第一种：直接通过{}绑定一个类</p>
+  <h2 :class="{active:isActive}">{{testtext}}</h2>
+  <p>第二种：传入多个值；class可以动态绑定多个类名，通过（类名：boolean布尔型[true/false]）控制类</p>
+<!--  <h2 :class="{key1:value1,key2:value2}">{{testtext}}</h2>-->
+<!--  <h2 :class="{类名1:true,类名2:boolean}">{{testtext}}</h2>-->
+  <h2 :class="{active:isActive,line:isline}">{{testtext}}</h2>
+  <button v-on:click="btnClick">点击改变颜色</button>
+  <p>第三种：和普通类同时存在，并不冲突</p>
+  <h2 class="bgcolor" :class="{active:isActive,line:isline}">{{testtext}}</h2>
+  <p>第四种：methods</p>
+  <h2 :class="getClass()">{{testtext}}</h2>
+  <img src="img/v-bind-class1.png">
+</div>
+<script src="../js/vue2.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: 'v-bind动态绑定class（对象语法）',
+      testtext: '动态绑定',
+      isActive:true,
+      isline:true
+    },
+    methods:{
+      btnClick:function ()
+      {
+        this.isActive=!this.isActive;
+      },
+      getClass()
+      {
+        return {active:this.isActive,line:this.isline}
+      }
+    }
+  })
+</script>
+</body>
+</html>

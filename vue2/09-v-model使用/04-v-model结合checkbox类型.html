@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <h2>{{message}}</h2>
+<!--  第一种:checkbox多相框 -->
+  <h2>请选择您的爱好:{{hobby}}</h2>
+  <ul>
+    <li>
+      <label for="snacks">
+      <input type="checkbox" value="吃猫条" id="snacks" v-model="hobby">零食
+    </label>
+    </li>
+    <li>
+      <label for="football">
+      <input type="checkbox" value="足球" id="football" v-model="hobby">足球
+    </label>
+    </li>
+    <li>
+      <label for="basketball">
+      <input type="checkbox" value="蓝球" id="basketball" v-model="hobby">篮球
+    </label>
+    </li>
+  </ul>
+
+<!--第二种:checkbox单选框-->
+  <div>
+  <label>
+    <input type="checkbox"  v-model="isAgree">同意协议
+  </label>
+  <p>你选择的是:{{isAgree}}</p>
+  <button :disabled="!isAgree">下一步</button>
+  </div>
+
+  <!--值绑定-->
+  <h2>请选择您的爱好:{{hobbies}}</h2>
+  <label v-for="item in originNames" :for="item">
+    <input type="checkbox"  :id="item" :value="item" v-model="hobbies"> {{item}}
+  </label>
+
+</div>
+
+
+
+
+<script src="../js/vue2.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: 'v-model结合checkbox类型',
+      hobby:[],
+      isAgree:false,
+      originNames:['足球','篮球','乒乓球','排球'],
+      hobbies:[]
+    }
+  })
+</script>
+</body>
+</html>

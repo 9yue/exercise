@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <h2>{{message}}</h2>
+  <cpn :title="title" :price="price"></cpn>
+</div>
+
+<template id="cpn">
+  <div>
+    <h4>{{title}}</h4>
+    <p>{{price}}元</p>
+  </div>
+</template>
+
+<script src="../js/vue.js"></script>
+<script>
+<!--  注册子组件-->
+Vue.component('cpn',{
+  template:'#cpn',
+  //1.简单语法(数组方式接受,'变量')
+  // props:['title','price']
+//  2.对象语法
+  props:{
+    //检测类型
+    title:String,
+  //  检测类型+其他验证
+    price:{
+      type:Number,
+      default:5,//默认值
+      required:true,//是否必传
+    },
+// 类型是对象或者数组时, 默认值必须是一个函数
+//     title:{
+//       type:Array,
+//       default(){
+//        return[]
+//       }
+//     }
+  }
+})
+
+
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: '组件通信-父组件向子组件传递数据',
+      title: '小福牌猫条',
+      price:10
+    }
+  })
+</script>
+</body>
+</html>

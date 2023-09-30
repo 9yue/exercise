@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    .active
+    {
+      color: #46aaec;
+    }
+    .line
+    {
+      border: 1px solid #d8a6f5;
+    }
+    .bgcolor
+    {
+      background-color: antiquewhite;
+    }
+  </style>
+</head>
+<body>
+<div id="app">
+  <h2>{{message}}</h2>
+  <p>第一种：['类名1','类名2'],可以和普通类同时存在</p>
+  <h2 class="bgcolor" :class="['active','line']">{{testtext}}</h2>
+  <p>第二种：[变量1,变量2],可以和普通类同时存在</p>
+  <h2 :class="[aclass,lclass]">{{testtext}}</h2>
+  <p>第三种：使用methods返回</p>
+  <h2 :class="getClass()">{{testtext}}</h2>
+</div>
+<script src="../js/vue2.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: 'v-bind动态绑定class（数组语法）,用的少',
+      testtext: '动态绑定',
+      aclass:'active',
+      bclass:'bgcolor',
+      lclass:'bbb'
+    },
+    methods:{
+      getClass()
+      {
+        return [this.aclass,this.bclass];
+      }
+    }
+  })
+</script>
+</body>
+</html>

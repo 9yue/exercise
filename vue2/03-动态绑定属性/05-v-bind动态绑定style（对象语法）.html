@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <h2>{{message}}</h2>
+<!--  <h2 :style="{key(属性名):value(属性值)}">{{testtext}}</h2>-->
+<!--css属性名用驼峰写法, 50px必须加单引号,否则当作一个变量去解析-->
+  <h2 :style="{fontSize:'50px'}">{{testtext}}</h2>
+<!--  finalSize当作一个变量-->
+  <h2 :style="{fontSize:finalSize}">{{testtext}}</h2>
+  <h2 :style="{fontSize:finalSize,color:finalColor}">{{testtext}}</h2>
+<!--methods抽取简化-->
+  <h2 :style="getStyle()">{{testtext}}</h2>
+
+</div>
+<script src="../js/vue2.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: 'v-bind动态绑定style（对象语法）',
+      testtext: 'style动态绑定',
+      finalSize:'100px',
+      finalColor:'#46aaec'
+    },
+    methods:{
+      getStyle()
+      {
+        return {fontSize:this.finalSize,color:this.finalColor}
+      }
+    }
+  })
+</script>
+</body>
+</html>

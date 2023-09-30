@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <h2>{{message}}</h2>
+  <p>{{linkdata}}</p>
+  <p v-html="linkdata"></p>
+</div>
+<script src="../js/vue2.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: 'v-html,数据本身是html，可以用v-html="数据"解析后展示',
+      linkdata:'<a href="https://www.baidu.com/">百度一下</a>'
+    }
+  })
+</script>
+</body>
+</html>

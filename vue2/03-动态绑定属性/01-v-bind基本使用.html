@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <h2>{{message}}</h2>
+  <!--  错误写法，属性不能使用Mustache写法-->
+  <!--  <img src="{{imgURl}}">-->
+  <!--  正确写法：使用v-bind-->
+  <img v-bind:src="imgURL" alt="" />
+  <a v-bind:href="aHref">百度一下</a>
+
+  <h2>v-bind语法糖写法：语法糖就是简写</h2>
+  <img :src="imgURL" />
+  <a :href="aHref">百度一下</a>
+</div>
+<script src="../js/vue2.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: 'v-bind:动态绑定属性',
+      imgURL: 'https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png',
+      aHref: 'https://www.baidu.com'
+    }
+  })
+</script>
+</body>
+</html>

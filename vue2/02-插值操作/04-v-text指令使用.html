@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <h2>{{message}}</h2>
+  <h3>小鱼喜欢{{hobby}}。</h3>
+  <h3>Mustache可以连接其他文本，v-text会覆盖</h3>
+  <h3 v-text="hobby">内容会被覆盖</h3>
+</div>
+<script src="../js/vue2.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: 'v-text（和Mustache相似，使用起来不灵活，较少使用,一般选择Mustach）',
+      hobby:'看小说'
+    }
+  })
+</script>
+</body>
+</html>

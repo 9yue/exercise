@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <h2>{{message}}</h2>
+  <h3>你选择的水果是:{{fruit}}</h3>
+  <select v-model="fruit">
+    <option value="香蕉">香蕉</option>
+    <option value="苹果">苹果</option>
+    <option value="火龙果">火龙果</option>
+    <option value="桃子">桃子</option>
+  </select>
+  <h3>你选择的水果是:{{fruits}}</h3>
+  <select v-model="fruits" multiple="multiple">
+    <option value="香蕉">香蕉</option>
+    <option value="苹果">苹果</option>
+    <option value="火龙果">火龙果</option>
+    <option value="桃子">桃子</option>
+  </select>
+</div>
+<script src="../js/vue2.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: 'v-model结合select类型',
+      fruit:'桃子',
+      fruits:[]
+    }
+  })
+</script>
+</body>
+</html>

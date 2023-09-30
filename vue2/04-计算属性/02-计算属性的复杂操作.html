@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <h2>{{message}}</h2>
+  <ul>
+    <li v-for="book in books">{{book.name}} 价格:{{book.price}}</li>
+  </ul>
+  <h2>总价格:{{TotalPrice}}元</h2>
+</div>
+<script src="../js/vue2.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: '计算属性的复杂操作',
+      testtext: '动态绑定',
+      books:[
+        {name:'孤独六讲',price:50},
+        {name:'醉步男',price:10},
+        {name:'绝叫',price:30},
+        {name:'活着',price:55},
+        {name:'秋园',price:20},
+      ]
+    },
+    computed:{
+      //书的总价格
+      TotalPrice:function ()
+      {
+        let result=0;
+        // 第一种循环
+        // for(let i=0;i<this.books.length;i++)
+        // {
+        //   result+=this.books[i]['price'];
+        // }
+
+        // 第二种循环
+        // for(let i in this.books)
+        // {
+        //   result+=this.books[i]['price'];
+        // }
+        // 第三种循环
+        for(let book of this.books)
+        {
+          result+=book.price;
+        }
+        return result;
+      }
+    }
+  })
+</script>
+</body>
+</html>

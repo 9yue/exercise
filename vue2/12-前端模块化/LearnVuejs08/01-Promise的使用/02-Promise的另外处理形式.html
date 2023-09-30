@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Promise的另外处理形式</title>
+</head>
+<body>
+<h2>Promise的另外处理形式</h2>
+<p>
+  then()函数可以接收两个函数，第一个函数成功时执行，第二个函数失败时执行
+</p>
+<script>
+  new Promise((resolve,reject)=>{
+    setTimeout(()=>{
+      // resolve('成功')
+      reject('失败')
+    },1000)
+  }).then(success=>{
+    console.log(success)
+  },err=>{
+    console.log(err)
+  })
+</script>
+</body>
+</html>

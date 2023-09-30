@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script>
+  // 什么时候使用箭头
+  // setTimeout(function (){
+  //   console.log(this)//打印的是window
+  // },1000)
+  //
+  // setTimeout(()=>{
+  //   console.log(this)//打印的是window
+  // },1000)
+
+
+
+  // 问题: 箭头函数中的this是如何查找的了?
+  // 回答：向外层作用域查找，一层一层this，直到有this的定义
+
+  // setTimeout(function (){
+  //   console.log(this)//打印的是window（setTimeout的function有call函数，返回了window）
+  //   console.log('----')
+  //
+  //   setTimeout(()=>{
+  //     console.log(this)//打印的是window
+  //     console.log('++++')
+  //   })
+  // })
+  //
+  // setTimeout(()=>{
+  //   console.log(this)//打印的是window
+  //   console.log('111')
+  // })
+
+  const obj={
+    aa(){
+
+      setTimeout(()=>{
+        console.log(this)//打印的是obj
+        setTimeout(()=>{
+          console.log(this)//打印的是obj
+        })
+
+        setTimeout(function (){
+          console.log(this)//打印的是window(setTimeout里的function（）的call函数会返回window)
+        })
+      },1000)
+
+
+      setTimeout(function (){
+        console.log(this)//打印的是window(setTimeout里的function（）的call函数会返回window)
+        setTimeout(function (){
+          console.log(this)//打印的是window(setTimeout里的function（）的call函数会返回window)
+        })
+
+        setTimeout(()=>{
+          console.log(this)//打印的是window（因为外层作用域的this是window）
+        })
+      },2000)
+    }
+  }
+
+  obj.aa();
+
+
+</script>
+</body>
+</html>

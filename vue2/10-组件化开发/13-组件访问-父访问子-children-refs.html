@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <h2>{{message}}</h2>
+  <p>1.$children（数组类型）:不常用,一般用在获取所有子组件。通过this.$children[子组件下标]来使用。缺点：改变父组件内的子组件标签顺序，下标值改变，会影响js获取的数据。</p>
+  <p>2.$refs（对象类型）:常用,获取指定子组件。默认空对象，必须在使用子组件的标签上加ref属性，父组件$refs就可以获取到。 ref="aa"，这里aa可以当作是key，获取方式：this.$refs.aa</p>
+  <button @click="btnClick">调用子组件</button>
+  <cpn></cpn>
+  <tcpn ref="two"></tcpn>
+  <trcpn  ref="three1"></trcpn>
+  <trcpn ref="three2"></trcpn>
+</div>
+
+<template id="cpn">
+  <div>
+    <h2>子组件</h2>
+    <ccpn></ccpn>
+    <button @click="childClick">获取子组件的子组件</button>
+  </div>
+</template>
+
+<template id="tcpn">
+  <div>
+    <h2>第二个子组件</h2>
+  </div>
+</template>
+
+<template id="trcpn">
+  <div>
+    <h2>第三个子组件</h2>
+  </div>
+</template>
+
+<template id="ccpn">
+  <div>
+    <h2>第一个子组件的子组件</h2>
+  </div>
+</template>
+
+<script src="../js/vue.js"></script>
+
+<script>
+
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: '组件访问-父访问子-children-refs',
+    },
+    methods:{
+      btnClick()
+      {
+        //1.$children
+        // console.log(this.$children);
+        // console.log(this.$children[0].title);
+        // console.log(this.$children[1].title);
+
+      //2.$refs，默认是空对象
+        console.log(this.$refs);
+        console.log(this.$refs.two.title);
+        console.log(this.$refs.three1.title);
+        console.log(this.$refs.three2.title);
+      }
+    },
+    components:{
+      cpn:{
+        template:'#cpn',
+        data(){
+          return{
+            title:'子组件标题'
+          }
+        },
+        methods:{
+          childClick()
+          {
+            console.log( this.$children)
+            this.$children[0].showMessage();
+          }
+        },
+        components:{
+          ccpn:{
+            template: '#ccpn',
+            methods: {
+              showMessage(){
+                console.log('子组件中的子组件的方法')
+              }
+            }
+          }
+        }
+      },
+      tcpn:{
+        template: '#tcpn',
+        data(){
+          return{
+            title:'第二个子组件标题'
+          }
+        }
+      },
+      trcpn:{
+        template: '#trcpn',
+        data(){
+          return{
+            title:'第三个子组件标题'
+          }
+        }
+      }
+    }
+  })
+</script>
+</body>
+</html>

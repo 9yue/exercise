@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script>
+//1.回调函数：当一个函数作为一个参数传入到另外一个参数中，并且不会立即执行，需要满足一定条件后才会执行
+//伪代码例子：1.通过用户接口获取用户基本信息，2.通过第一层网络请求获取的用户id，像会员接口发起请求，用户是会员，会员信息等等。
+// 这里第二次发起请求的函数就是回调函数，因为它必须获取到用户id才可以再通过用户id查找绑定的会员信息，同时网络请求也是个异步任务
+//   setTimeout(function (){ //function(){console.log(’执行了函数‘)}就是回调函数，它只有3秒后才会执行
+//     console.log('执行了函数')
+//   },3000)
+
+// 2.异步任务
+//与异步任务对应的概念是“同步任务”，同步任务在主线程排队执行，只有前一个任务执行完毕，才会执行下一个任务
+// setTimeout(()=>{
+//   console.log('先执行')
+// })
+// console.log('后执行')
+
+
+
+
+//异步请求1.5s结束，发情到返回结果3s
+function aa(){
+new Promise((resolve)=>{
+  // 异步请求花费1.5s
+  setTimeout(()=>{
+    resolve('aaa')
+  },1500)
+}).then(res=>{
+  console.log('1.5秒到达这个地方')
+  return res
+}).then((res)=>{
+  setTimeout(()=>{
+    console.log('3秒到达这个地方,并把1.5s获取的aaa返回')
+    console.log(res+'ccc')
+    return res+'ccc';
+  },1500)
+})
+}
+aa();
+// let result=aa();
+// console.log(result)
+
+// new Promise((resolve)=>{
+//   // 异步请求花费1.5s
+//   setTimeout(()=>{
+//     resolve('aaa')
+//   },1500)
+// }).then((res)=>{
+//   return res;
+// })
+
+
+</script>
+</body>
+</html>

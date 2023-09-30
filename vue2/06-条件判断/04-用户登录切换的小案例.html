@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <h2>{{message}}</h2>
+  <span v-if="userLogin">
+    <label for="username">账号登录</label>
+    <input type="text" id="username" placeholder="账号登录">
+  </span>
+  <span v-else>
+    <label for="email"> 邮箱登录</label>
+     <input type="text" id="email" placeholder="邮箱登录">
+  </span>
+<!--  使用methods方法-->
+<!--  <button @click="loginSwitch">切换</button>-->
+<!--  简便方法：表达式-->
+  <button @click="userLogin=!userLogin">切换</button>
+</div>
+<script src="../js/vue2.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: '04-用户登录切换的小案例',
+      userLogin:true
+    },
+    methods:{
+      loginSwitch()
+      {
+        this.userLogin=!this.userLogin;
+      }
+    }
+  })
+</script>
+</body>
+</html>

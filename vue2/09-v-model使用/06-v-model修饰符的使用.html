@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <h2>{{message}}</h2>
+<!--1.修饰符:lazy,失去焦点再触发事件-->
+  <input type="text" v-model.lazy="test">
+  <h2>{{test}}</h2>
+<!--  2.修饰符:number  v-model默认是string类型,只有使用number修饰符,v-model的值才是number类型-->
+  <input type="number" v-model.number="age">
+  <h2>{{age}}-{{typeof age}}</h2>
+<!--3.修饰符:trim-->
+  <input type="text" v-model.trim="name">
+  <p>您的名字是:{{name}}</p>
+</div>
+<script src="../js/vue2.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: 'v-model修饰符的使用',
+      test:'测试',
+      age:0,
+      name:''
+    }
+  })
+</script>
+</body>
+</html>

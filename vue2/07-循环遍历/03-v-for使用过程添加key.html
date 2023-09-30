@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <h2>{{message}}</h2>
+  <img src="img/key.png">
+
+  <p>使用key：在遍历数组时，每个key和显示的值进行了绑定，插入新值时，diff算法会把有key的值优先绑定起来，然后把新值插入到它正确的位置，提高了性能。</p>
+  <p>没有使用key：我想在b后面插入F，其实是依次把c替换成f,d换成c..这样依次，最后e变成一个新的元素插入到数组中，性能不好，比较慢</p>
+  <ul>
+    <li v-for="item in test" :key="item">{{item}}</li>
+  </ul>
+  <button @click="btnClick">插入F</button>
+</div>
+<script src="../js/vue2.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: 'v-for使用过程添加key',
+      test:['a','b','c','d','e']
+    },
+    methods:{
+      btnClick(){
+        this.test.splice(2,0,'F')
+      }
+    }
+  })
+</script>
+</body>
+</html>

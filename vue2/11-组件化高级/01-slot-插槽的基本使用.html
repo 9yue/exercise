@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <h2>{{message}}</h2>
+  <cpn></cpn>
+  <cpn>
+    <p>我只替换了一行</p>
+  </cpn>
+  <cpn>
+    <p>段落3,嘻嘻嘻嘻</p>
+    <p>这次替换两个p元素.如果有多个值, 同时放入到组件进行替换时, 一起作为替换元素</p>
+  </cpn>
+
+  <cpn2></cpn2>
+  <cpn2>
+    <p>段落3,我还是第二个组件!!!我用段落3替换slot默认标签按钮</p>
+  </cpn2>
+
+</div>
+<!--  1.插槽基本使用 <slot><button>默认标签按钮</button></slot>-->
+<template id="cpn2">
+  <div>
+    <h2>第二个子组件</h2>
+    <p>段落1,哈哈哈哈哈</p>
+    <slot><button>默认标签按钮</button> </slot>
+    <p>段落2,呵呵呵呵呵</p>
+  </div>
+</template>
+
+<!--  1.插槽的默认值 <slot></slot>-->
+<template id="cpn">
+  <div>
+    <h2>第一个子组件</h2>
+    <p>段落1,哈哈哈哈哈</p>
+    <slot></slot>
+    <p>段落2,呵呵呵呵呵</p>
+  </div>
+</template>
+
+
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: 'slot-插槽的基本使用',
+    },
+    components:{
+      cpn:{
+        template:'#cpn'
+      },
+      cpn2:{
+        template: '#cpn2'
+      }
+    }
+  })
+</script>
+</body>
+</html>

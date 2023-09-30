@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <h2>{{message}}</h2>
+  <h2>计数器:{{counter}}</h2>
+<!-- 第一种:表达式-->
+<!--  <button v-on:click="counter++">+</button>-->
+<!--  <button v-on:click="counter--;">-</button>-->
+<!-- 第二种:调用methods方法-->
+<!--    <button v-on:click="add()">+</button>-->
+<!--    <button v-on:click="sub();">-</button>-->
+<!-- 第三种:v-on语法糖写法-->
+      <button @click="add()">+</button>
+      <button @click="sub();">-</button>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: 'v-on基本使用',
+      counter: 0,
+    },
+    methods:{
+      add(){
+        this.counter++;
+      },
+      sub(){
+        this.counter--;
+      }
+    }
+  })
+</script>
+</body>
+</html>

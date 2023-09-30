@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <h2>{{message}}</h2>
+  <cpn @cate-click="cateClick"></cpn>
+</div>
+
+
+<template id="cpn">
+  <div>
+    <ul>
+      <li v-for="item in categories" @click="btnClick(item)">{{item.name}}</li>
+    </ul>
+  </div>
+
+</template>
+<script src="../js/vue.js"></script>
+<script>
+<!--  子组件-->
+Vue.component('cpn',{
+  template:'#cpn',
+  data(){
+    return {
+      categories:[
+        {id: 'aaa', name: '热门推荐'},
+        {id: 'bbb', name: '手机数码'},
+        {id: 'ccc', name: '家用家电'},
+        {id: 'ddd', name: '电脑办公'},
+      ]
+    }
+  },
+  methods:{
+    btnClick(item)
+    {
+      this.$emit('cate-click',item);
+    }
+  }
+})
+<!--  父组件-->
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: '组件通信-子传父(自定义事件)'
+    },
+    methods: {
+      cateClick(item)
+      {
+        console.log('父组件方法',item)
+        console.log(item.name)
+      }
+    }
+  })
+</script>
+</body>
+</html>

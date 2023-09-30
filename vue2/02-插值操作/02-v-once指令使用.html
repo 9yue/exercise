@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <h2>{{message}}</h2>
+  <h2 v-once>测试{{message}}</h2>
+  <p>v-once后面不需要跟表达式，比如v-for后面需要跟="",v-once不需要。v-once只渲染一次，第一次展示数据后，数据再改变，界面不会跟着变化。</p>
+</div>
+<script src="../js/vue2.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: 'v-once使用'
+    }
+  })
+</script>
+</body>
+</html>

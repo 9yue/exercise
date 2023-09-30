@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <h2>{{message}}</h2>
+  <div v-if="isShow">
+    <h2>if显示</h2>
+    <p>if隐藏时，是把使用v-if整个元素从dom中删除，适合只有一次切换</p>
+  </div>
+  <div v-show="isShow">
+  <h2>show显示</h2>
+    <p>v-show隐藏时，是在使用v-show的元素上加display:none样式，适合隐藏显示品换切换</p>
+  </div>
+</div>
+<script src="../js/vue2.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: '06-v-show的使用',
+      isShow:true
+    }
+  })
+</script>
+</body>
+</html>

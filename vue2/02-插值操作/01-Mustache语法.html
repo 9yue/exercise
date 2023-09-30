@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <h2>{{message}}</h2>
+  <h2>{{message}}，多种写法</h2>
+  <h3>Mustache不仅仅可以写变量，还可以写简单的表达式</h3>
+  <p>{{name+hobby}}</p>
+  <p>{{name+' '+hobby}}</p>
+  <p>{{name+'喜欢看'+hobby}}</p>
+  <p>小鱼体重：{{weight * 2}}</p>
+
+</div>
+<script src="../js/vue2.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: 'Mustache语法',
+      name:'小鱼',
+      hobby:'小说',
+      weight:47
+    }
+  })
+</script>
+</body>
+</html>

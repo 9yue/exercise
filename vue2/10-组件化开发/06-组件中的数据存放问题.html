@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <h2>{{message}}</h2>
+  <cpn1></cpn1>
+</div>
+
+<template id="cpn">
+  <div>
+    <h2>{{title}}</h2>
+    <p>{{text}}</p>
+    <p>组件段落2,呵呵呵呵</p>
+  </div>
+</template>
+
+<script src="../js/vue2.js"></script>
+<script>
+<!--  注册全局组件-->
+Vue.component('cpn1',{
+  data(){
+    return {
+      title:'组件标题',
+      text:'组件段落,哈哈哈哈哈哈哈哈'
+    }
+  },
+  template:'#cpn'
+})
+
+
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: '组件中的数据存放问题',
+    }
+  })
+</script>
+</body>
+</html>

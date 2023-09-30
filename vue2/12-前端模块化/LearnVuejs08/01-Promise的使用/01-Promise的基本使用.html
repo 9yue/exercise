@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Promise的基本使用</title>
+</head>
+<body>
+<h2>1、什么时候使用Promise?</h2>
+<p>一般情况下是有异步操作时,使用Promise对这个异步操作进行封装</p>
+<h2>2、为什么使用使用Promise</h2>
+<p>在进行多层异步调用时（回调地狱），有以下好处:</p>
+<ul>
+  <li>1.更优雅，清楚层级关系</li>
+  <li>2.更容易维护</li>
+</ul>
+ <script>
+   // 1.使用setTimeout
+   // setTimeout(()=>{
+   //   console.log('1秒后显示')
+   //   setTimeout(()=>{
+   //     console.log('2秒后显示')
+   //   })
+   // },1000)
+
+   //什么时候使用Promise？答：一般情况下是有异步操作时,使用Promise对这个异步操作进行封装
+   // new -> 构造函数(1.保存了一些状态信息  2.执行传入的函数)
+   // 在执行传入的回调函数时, 会传入两个参数, resolve, reject.本身又是函数
+   new Promise((resolve,reject)=>{
+     setTimeout(()=>{
+       //这里调用resolve和reject函数，把结果传给then或者catch下一步处理
+
+       // 成功的时候调用resolve
+       resolve('2222')
+       // 失败的时候调用reject
+       reject('111')
+     },1000)
+   }).then((res)=>{
+     console.log('1秒后显示')
+     setTimeout(()=>{
+       console.log('111'+res)
+     },2000)
+   }).catch((err)=>{
+     console.log(err)
+   })
+ </script>
+</body>
+</html>

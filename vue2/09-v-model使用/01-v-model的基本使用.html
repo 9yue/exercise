@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <h2>{{message}}</h2>
+  <p>Vue中使用v-model指令来实现表单元素和数据的双向绑定</p>
+  <form>
+    <input type="text" v-model="name">
+    <textarea v-model="name">
+    </textarea>
+    <p>{{name}}</p>
+  </form>
+</div>
+<script src="../js/vue2.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: '表单绑定v-model',
+      name:'小鱼'
+    }
+  })
+</script>
+</body>
+</html>

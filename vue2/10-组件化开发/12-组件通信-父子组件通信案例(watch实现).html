@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <h2>{{message}}</h2>
+  <h3>练习要求：</h3>
+  <p>1.父组件向子组件传递number1和number2</p>
+  <p>2.子组件接收number1（num1）和number2（num2）后，实时改变num1和num2，同时父组件的number1和number2也要改变</p>
+  <p>3.监听num1改变同时，num2的值乘以100，num2改变时，num1除以100,并且父组件也跟着改变</p>
+  <p style="color: red">
+    注意：子组件如果要改变从父组件传过来的值，需要先在data（）{return{dnum1:this.num1}}重新定义才可以使用，并且新名字不能和接收的名字一样</p>
+  <h4 style="color:red">watch:监听某个属性的改变，watch监听名字不能随便取，和data里面的属性名称一样</h4>
+  <p>watch里面的函数，有两个参数（newValue,oldValue），一般使用newValue</p>
+
+
+  <cpn :num1="number1" :num2="number2" @num1change="num1Change" @num2change="num2Change"></cpn>
+</div>
+
+<template id="cpn">
+  <div>
+    <h3>子组件</h3>
+    <h4>props:{{num1}}</h4>
+    <h4>data:{{dnum1}}</h4>
+    <input type="text" v-model="dnum1">
+
+    <h4>props:{{num2}}</h4>
+    <h4>data:{{dnum2}}</h4>
+    <input type="text" v-model="dnum2">
+
+
+    <h4>测试watch的newValue和oldValue</h4>
+    <input type="text" v-model="name">
+  </div>
+</template>
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: '组件通信-父子组件通信案例(watch实现)',
+      number1:1,
+      number2:2
+    },
+    methods: {
+      num1Change(n)
+      {
+        this.number1=parseFloat(value);
+      },
+      num2Change(value)
+      {
+        this.number2=parseFloat(value);
+      }
+    },
+    components:{
+      cpn:{
+        template:'#cpn',
+        props:{
+          num1:Number,
+          num2:Number
+        },
+        data(){
+          return{
+            dnum1:this.num1,
+            dnum2:this.num2,
+            name:'小福'
+          }
+        },
+        watch:{
+          //dnum1和dnum2不会发生死循环，dnum1数据通过input输入发生改变时，dnum2因为dum1*100调用了dum2（）监听事件，
+          // 在dum2里面，dum1又通过dum2/100得到本身的自己，没有改变，所以不会陷入死循环调用
+          // （dum1本身是1，dum2=dum1*100=100，触发监听dum2（），在dum2（）方法里dum1/100，dum1=1，dum1没改变，不会触发监听事件）
+          dnum1(value){
+            // console.log('watch---'+value)
+            this.dnum2=this.dnum1 * 100
+            this.$emit('num1change',this.value)
+
+
+          },
+          dnum2(value){
+            // console.log('dnum2---'+value)
+            this.dnum1=this.dnum2 / 100
+            this.$emit('num2change',value)
+
+          },
+          name(newValue,oldValue){
+            console.log('new--'+newValue+'--old--'+oldValue)
+          }
+        }
+      }
+    }
+  })
+</script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <h2>{{message}}</h2>
+  <h3>使用v-for遍历对象(value,key,index),单个参数代表显示的对象的值，使用（）时，三个参数顺序是固定的（值（value），键（key），index（下标值））</h3>
+  <hr/>
+<!--1.直接循环对象是循环对象里所有的value-->
+  <h4 v-for="item in cat">{{item}}</h4>
+  <br/>
+
+<!--2. 循环时把key也显示出来-->
+  <h4 v-for="(item,key) in cat">{{key}}：{{item}}</h4>
+  <br/>
+
+  <!--3. 获取value+key+index-->
+  <h4 v-for="(item,key,index) in cat">{{index}}.{{key}}：{{item}}</h4>
+</div>
+<script src="../js/vue2.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: 'v-for遍历对象',
+      cat:{
+        name:'小福',
+        age:'两个月',
+        hobby:'吃冻干'
+      } ,
+    }
+  })
+</script>
+</body>
+</html>

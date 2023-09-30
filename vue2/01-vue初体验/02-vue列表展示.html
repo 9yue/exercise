@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <ul>
+        <li v-for="item in names">{{item}}</li>
+    </ul>
+</div>
+<script src="../js/vue2.js"></script>
+<script>
+    const app = new Vue({
+        el:'#app',
+        data:{
+           names:['李影','李浩源','李梅']
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <h2>{{message}}</h2>
+  <p>这里避免使用驼峰或者是通过"-"分割</p>
+  <img src="img/img.png" style="width: 1400px;">
+  <cpn :c-info="info"></cpn>
+</div>
+
+<template id="cpn">
+  <div>
+  <ul>
+    <li v-for="item in cInfo">{{item}}</li>
+  </ul>
+  </div>
+</template>
+<!--<script src="../js/vue.js"></script>-->
+<script src="../js/vue2.js"></script>
+<script>
+<!--  父传子:props-->
+const cpn={
+  template:'#cpn',
+  props:{
+    cInfo:{
+      type:Object
+    },
+
+  }
+}
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: '组件通信-父传子(props中的驼峰标识)',
+      info:{
+        name:'小福',
+        age:'3个月',
+        hobby:'干饭'
+      }
+    },
+    components:{
+      cpn
+    }
+  })
+</script>
+</body>
+</html>
