@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<button>按钮1</button>
+<button>按钮2</button>
+<button>按钮3</button>
+<button>按钮4</button>
+<button>按钮5</button>
+<script>
+<!-- var是没有块级作用域，let有块级作用域，let是更完美的var-->
+// 变量作用域:是指变量作用的范围
+//   {
+//     var name="小福"
+//     console.log(name);
+//   }
+//   console.log(name);
+
+
+
+//没有块级作用域引起的问题: if的块级
+// 两次调用func（）方法都是想显示”小福“，但是因为var没有作用域，所以外部也可以改变name，所以外部再调用func方法，name变量不再是小福，而是改变后的aaa
+  // if(true)
+  // {
+  //   var name = '小福';
+  //   func=function () {
+  //     console.log(name)
+  //   }
+  //   func();
+  // }
+  // name='aaa';
+  // func();
+
+
+  //let有自己的块作用域，所以再外层调用前改变name，并不会影响func里面的name
+  if(true)
+  {
+    let name="小福"
+    func=function ()
+    {
+      console.log(name)
+    }
+    func();
+  }
+  name='3333';
+  func();
+
+
+
+
+  //没有块级作用域引起的问题: for的块级
+  //要求：获取所有按钮，点击哪个按钮打印出来
+  const btns=document.getElementsByTagName('button');
+
+
+  // for(var i=0;i<btns.length;i++)
+  // {
+  //   btns[i].addEventListener('click',function (){
+  //     console.log('第' + i + '个按钮被点击');
+  //   })
+  // }
+  //因为var没有作用域，所以相当于是全局的且是一直更新的，所以i最后是5:
+  // var i=5;
+  // {
+  //   btns[i].addEventListener('click',function (){
+  //   console.log('第' + i + '个按钮被点击');
+  //   })
+  // }
+  // {
+  //   btns[i].addEventListener('click',function (){
+  //     console.log('第' + i + '个按钮被点击');
+  //   })
+  // }
+  // {
+  //   btns[i].addEventListener('click',function (){
+  //     console.log('第' + i + '个按钮被点击');
+  //   })
+  // }
+  // {
+  //   btns[i].addEventListener('click',function (){
+  //     console.log('第' + i + '个按钮被点击');
+  //   })
+  // }
+  // {
+  //   btns[i].addEventListener('click',function (){
+  //     console.log('第' + i + '个按钮被点击');
+  //   })
+  // }
+
+
+
+  for(let i=0;i<btns.length;i++)
+  {
+    btns[i].addEventListener('click',function (event){
+      console.log(i)
+      console.log('第' + i + '个按钮被点击');
+    })
+  }
+  // let 是有自己的作用域，所以每一次循环i都保存当前块级中
+  // {
+  //   var i=0;
+  //   btns[i].addEventListener('click',function (){
+  //     console.log('第' + i + '个按钮被点击');
+  //   })
+  // }
+  // {
+  //   var i=1;
+  //   btns[i].addEventListener('click',function (){
+  //     console.log('第' + i + '个按钮被点击');
+  //   })
+  // }
+  // {
+  //   var i=2;
+  //   btns[i].addEventListener('click',function (){
+  //     console.log('第' + i + '个按钮被点击');
+  //   })
+  // }
+  // {
+  //   var i=3;
+  //   btns[i].addEventListener('click',function (){
+  //     console.log('第' + i + '个按钮被点击');
+  //   })
+  // }
+  // {
+  //   var i=4;
+  //   btns[i].addEventListener('click',function (){
+  //     console.log('第' + i + '个按钮被点击');
+  //   })
+  // }
+
+</script>
+</body>
+</html>
