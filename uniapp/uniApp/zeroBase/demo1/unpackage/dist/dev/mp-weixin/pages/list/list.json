@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "新闻列表",
+  "navigationBarBackgroundColor": "#fc011a",
+  "usingComponents": {
+    "pubtitle": "/components/pubtitle/pubtitle"
+  }
+}

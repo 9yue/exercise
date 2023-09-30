@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "uni-app零基础入门",
+  "navigationBarBackgroundColor": "#1571fa",
+  "usingComponents": {
+    "pubtitle": "/components/pubtitle/pubtitle"
+  }
+}

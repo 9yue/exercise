@@ -1,0 +1,1 @@
+<view><pubtitle vue-id="2e637200-1" title="列表" subtitle="这是新闻列表" bind:__l="__l"></pubtitle><navigator url="/pages/about/about">关于我们</navigator><navigator url="/pages/index/index">返回首页</navigator></view>

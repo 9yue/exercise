@@ -1,0 +1,1 @@
+<view class="news"><image src="{{item.picurl}}" mode="aspectFill"></image><view class="text"><view class="title">{{item.title}}</view><block wx:if="{{!item.looktime}}"><view class="info"><view>{{item.author}}</view><view>{{item.hits+"浏览"}}</view></view></block><block wx:else><view class="info"><view>浏览时间</view><view>{{item.looktime}}</view></view></block></view></view>

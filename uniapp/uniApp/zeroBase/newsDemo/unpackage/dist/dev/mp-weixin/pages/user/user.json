@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "用户中心",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "newsbox": "/components/newsbox/newsbox"
+  }
+}
